@@ -15,9 +15,7 @@ const item = {
 
 const EMAIL_SHOWN = `Dear Professor Rossi,
 
-I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, particularly the correlation with long-term ejection fraction outcomes.
-
-I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences (3.8 GPA). I'm drawn to cardiac repair research and would love to`
+I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, especially the correlation with`
 
 export default function Hero() {
   return (
