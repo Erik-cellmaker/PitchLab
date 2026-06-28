@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   description: 'How PitchLab collects, uses, and protects your data.',
 }
 
+const h2Style: React.CSSProperties = {
+  marginTop: '24px', marginBottom: '8px',
+}
+const pStyle: React.CSSProperties = {
+  marginBottom: '10px', lineHeight: '1.65', fontSize: '14px',
+}
+const ulStyle: React.CSSProperties = {
+  listStyle: 'none', padding: 0, margin: '6px 0',
+  display: 'flex', flexDirection: 'column', gap: '4px',
+}
+const sectionStyle: React.CSSProperties = { padding: 0 }
+const bodyStyle: React.CSSProperties = { gap: '0', padding: '28px 0 56px' }
+
 export default function Privacy() {
   return (
     <>
@@ -20,51 +33,51 @@ export default function Privacy() {
             <p className="legal-date">Last updated: June 2026</p>
           </header>
 
-          <div className="legal-body">
+          <div className="legal-body" style={bodyStyle}>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">What data we collect</h2>
-              <p className="legal-p">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={{ ...h2Style, marginTop: 0 }}>What data we collect</h2>
+              <p className="legal-p" style={pStyle}>
                 When you use PitchLab, we collect only the minimum information required to send your outreach emails. This includes:
               </p>
-              <ul className="legal-ul">
+              <ul className="legal-ul" style={ulStyle}>
                 <li>Your Gmail email address, obtained via Google OAuth during authorization</li>
                 <li>A Gmail OAuth refresh token, which authorizes us to send email on your behalf</li>
                 <li>Your selected plan (Starter, Pro, or Premium)</li>
                 <li>Research preferences you submit in our order form — such as your target institution and field of interest</li>
               </ul>
-              <p className="legal-p">
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 We do not collect your name, phone number, mailing address, or any other personal information beyond what is listed above.
               </p>
             </section>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">How we use your data</h2>
-              <p className="legal-p">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={h2Style}>How we use your data</h2>
+              <p className="legal-p" style={pStyle}>
                 The data we collect is used for one purpose only: fulfilling your outreach order.
               </p>
-              <ul className="legal-ul">
+              <ul className="legal-ul" style={ulStyle}>
                 <li>Your Gmail OAuth token is used exclusively to send the personalized emails you ordered, from your Gmail account, to the professors you selected</li>
                 <li>Your email address is used to associate your authorization with your order</li>
                 <li>Your form responses are used to understand your research interests and generate relevant, specific email content</li>
               </ul>
-              <p className="legal-p">
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 We do not use your data for advertising, analytics, marketing communications, or any purpose beyond processing your order.
               </p>
             </section>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">What we never do</h2>
-              <div className="legal-callout">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={h2Style}>What we never do</h2>
+              <div className="legal-callout" style={{ margin: '6px 0' }}>
                 <strong>We never store your Gmail password.</strong> PitchLab uses Google OAuth — a secure authorization standard — which means you grant us a limited, revocable permission to send email on your behalf. We never see or store your password at any point.
               </div>
-              <ul className="legal-ul">
+              <ul className="legal-ul" style={ulStyle}>
                 <li>We never read your Gmail inbox, drafts, sent folder, or any existing emails</li>
                 <li>We never send any email from your account other than the outreach batch you explicitly ordered</li>
                 <li>We never sell, rent, share, or transfer your personal data to third parties</li>
                 <li>We never use your Gmail access for any purpose other than sending your ordered emails</li>
               </ul>
-              <p className="legal-p">
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 You can revoke PitchLab's access to your Gmail at any time by visiting{' '}
                 <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">
                   myaccount.google.com/permissions
@@ -73,41 +86,41 @@ export default function Privacy() {
               </p>
             </section>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">Data retention</h2>
-              <p className="legal-p">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={h2Style}>Data retention</h2>
+              <p className="legal-p" style={pStyle}>
                 Your OAuth token is stored only as long as needed to process your outreach batch. Once your emails have been sent and your order is complete, your token is deleted from our systems.
               </p>
-              <p className="legal-p">
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 Order metadata (your selected tier and research preferences) may be retained for up to 90 days for customer support and quality assurance purposes, after which it is permanently deleted.
               </p>
             </section>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">Third-party services</h2>
-              <p className="legal-p">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={h2Style}>Third-party services</h2>
+              <p className="legal-p" style={pStyle}>
                 PitchLab uses the following third-party services to operate:
               </p>
-              <ul className="legal-ul">
+              <ul className="legal-ul" style={ulStyle}>
                 <li><strong style={{ color: 'var(--text)', fontWeight: 600 }}>Google OAuth</strong> — to authenticate and authorize sending from your Gmail account</li>
                 <li><strong style={{ color: 'var(--text)', fontWeight: 600 }}>PubMed</strong> — to look up professors' published research papers</li>
                 <li><strong style={{ color: 'var(--text)', fontWeight: 600 }}>Stripe</strong> — to process payments securely. We never see or store your card details.</li>
                 <li><strong style={{ color: 'var(--text)', fontWeight: 600 }}>Tally</strong> — to collect your research preferences via our order form</li>
               </ul>
-              <p className="legal-p">
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 Each of these services operates under its own privacy policy.
               </p>
             </section>
 
-            <section className="legal-section">
-              <h2 className="legal-h2">Your rights</h2>
-              <p className="legal-p">
+            <section className="legal-section" style={sectionStyle}>
+              <h2 className="legal-h2" style={h2Style}>Your rights</h2>
+              <p className="legal-p" style={{ ...pStyle, marginBottom: 0 }}>
                 You have the right to request deletion of any personal data we hold about you. To do so, email us at the address below and we will respond within 5 business days. You can also revoke our Gmail access at any time via your Google Account settings.
               </p>
             </section>
 
-            <section className="legal-section">
-              <div className="legal-contact">
+            <section className="legal-section" style={sectionStyle}>
+              <div className="legal-contact" style={{ marginTop: '24px' }}>
                 <div className="legal-contact-label">Questions about privacy</div>
                 <div className="legal-contact-h">Contact us</div>
                 <p>

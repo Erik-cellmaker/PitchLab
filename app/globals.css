@@ -516,6 +516,7 @@ section { padding: 128px 0; }
   font-family: var(--font-mono); font-size: 12px; color: var(--text-3);
   letter-spacing: 0.04em;
 }
+.legal-section { padding: 0; }
 .legal-body {
   max-width: 680px;
   padding: 36px 0 64px;
