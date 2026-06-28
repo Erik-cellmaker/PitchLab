@@ -197,6 +197,8 @@ section { padding: 128px 0; }
 .email-body { padding: 20px; }
 .email-body-text { font-size: 13px; color: var(--text-2); line-height: 1.85; white-space: pre-wrap; }
 .email-body-text strong { color: var(--text); font-weight: 500; }
+.email-cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--text-2); margin-left: 1px; vertical-align: text-bottom; animation: cursor-blink 1s ease-in-out infinite; }
+@keyframes cursor-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes typing-dot {
   0%, 60%, 100% { opacity: 0; }
   30% { opacity: 1; }

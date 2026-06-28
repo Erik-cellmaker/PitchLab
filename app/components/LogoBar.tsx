@@ -10,7 +10,7 @@ export default function LogoBar() {
 
   return (
     <div className="logobar" aria-label="Trusted by pre-med students at leading universities">
-      <p className="logobar-label">Trusted by pre-med students at</p>
+      <p className="logobar-label">Trusted By Pre-Medical Students At:</p>
       <div className="logobar-track-wrap">
         <div className="logobar-track" aria-hidden="true">
           {doubled.map((s, i) => (

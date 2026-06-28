@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import GlobeCanvas from './GlobeCanvas'
 
 const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
@@ -13,7 +14,7 @@ const item = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 }
 
-const EMAIL_SHOWN = `Dear Professor Rossi,
+const FULL_EMAIL = `Dear Professor Rossi,
 
 I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, particularly the correlation with long-term ejection fraction outcomes.
 
@@ -21,6 +22,54 @@ I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences
 
 Best,
 Maya Patel`
+
+function charDelay(i: number): number {
+  const prev = FULL_EMAIL[i - 1] ?? ''
+  if (prev === '.' || prev === '!' || prev === '?') return 260 + Math.random() * 300
+  if (prev === ',') return 70 + Math.random() * 90
+  if (prev === '\n') return 180 + Math.random() * 260
+  if (Math.random() < 0.03) return 180 + Math.random() * 320
+  return 22 + Math.random() * 52
+}
+
+function EmailTyper() {
+  const [displayed, setDisplayed] = useState('')
+  const [done, setDone] = useState(false)
+  const indexRef = useRef(0)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const start = setTimeout(() => {
+      function type() {
+        const i = indexRef.current
+        if (i >= FULL_EMAIL.length) { setDone(true); return }
+        setDisplayed(FULL_EMAIL.slice(0, i + 1))
+        indexRef.current = i + 1
+        timerRef.current = setTimeout(type, charDelay(i + 1))
+      }
+      type()
+    }, 950)
+
+    return () => {
+      clearTimeout(start)
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {/* Ghost text holds the fixed height — invisible but in layout */}
+      <p className="email-body-text" style={{ visibility: 'hidden', pointerEvents: 'none', userSelect: 'none' }} aria-hidden="true">
+        {FULL_EMAIL}
+      </p>
+      {/* Typed text overlaid on top */}
+      <p className="email-body-text" style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+        {displayed}
+        {!done && <span className="email-cursor" aria-hidden="true" />}
+      </p>
+    </div>
+  )
+}
 
 export default function Hero() {
   return (
@@ -74,14 +123,12 @@ export default function Hero() {
             </div>
             <div className="email-field">
               <span className="ef-label">Subject</span>
-              <span className="ef-val"><strong>Cardiac repair research inquiry, Maya Patel</strong></span>
+              <span className="ef-val"><strong>Cardiac Repair Research Inquiry - Maya Patel</strong></span>
             </div>
           </div>
 
           <div className="email-body">
-            <p className="email-body-text">
-              {EMAIL_SHOWN}
-            </p>
+            <EmailTyper />
           </div>
         </div>
       </motion.div>
