@@ -40,10 +40,12 @@ export default function GlobeCanvas() {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = ref.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const _canvas = ref.current
+    if (!_canvas) return
+    const _ctx = _canvas.getContext('2d')
+    if (!_ctx) return
+    const canvas: HTMLCanvasElement = _canvas
+    const ctx: CanvasRenderingContext2D = _ctx
 
     let raf = 0
     let angle = 0
