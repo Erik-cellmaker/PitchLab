@@ -32,7 +32,7 @@ export default function FloatingOrb() {
         + Math.sin(t * 0.18) * 55
         + Math.cos(t * 0.09) * 32
 
-      el.style.transform = `translate(${x}px, ${y}px)`
+      el!.style.transform = `translate(${x}px, ${y}px)`
       raf = requestAnimationFrame(frame)
     }
 
