@@ -23,7 +23,7 @@ const plans = [
     ],
     cta: 'Get started',
     btnClass: 'p-btn p-btn-ghost',
-    href: 'https://pitch-lab.dev/authorize?tier=starter',
+    href: '/api/authorize?tier=starter',
   },
   {
     name: 'Pro',
@@ -40,7 +40,7 @@ const plans = [
     ],
     cta: 'Get started',
     btnClass: 'p-btn p-btn-accent',
-    href: 'https://pitch-lab.dev/authorize?tier=pro',
+    href: '/api/authorize?tier=pro',
   },
   {
     name: 'Premium',
@@ -57,7 +57,7 @@ const plans = [
     ],
     cta: 'Get started',
     btnClass: 'p-btn p-btn-ghost',
-    href: 'https://pitch-lab.dev/authorize?tier=premium',
+    href: '/api/authorize?tier=premium',
   },
 ]
 
