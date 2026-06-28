@@ -6,10 +6,12 @@ import Pricing from './components/Pricing'
 import FAQ from './components/FAQ'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import FloatingOrb from './components/FloatingOrb'
 
 export default function Home() {
   return (
     <>
+      <FloatingOrb />
       <a href="#main" className="skip-link">Skip to main content</a>
       <Nav />
       <main id="main">

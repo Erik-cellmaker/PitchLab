@@ -13,17 +13,11 @@ const item = {
   show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 }
 
-const EMAIL_BODY = `Dear Professor Rossi,
+const EMAIL_SHOWN = `Dear Professor Rossi,
 
 I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, particularly the correlation with long-term ejection fraction outcomes.
 
-I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences (3.8 GPA). I'm drawn to cardiac repair research and would love to contribute to your lab as a volunteer this spring.
-
-Would you have 15 minutes to discuss potential opportunities?
-
-Best,
-Maya Patel
-maya.patel@northlake.edu`
+I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences (3.8 GPA). I'm drawn to cardiac repair research and would love to`
 
 export default function Hero() {
   return (
@@ -82,7 +76,9 @@ export default function Hero() {
           </div>
 
           <div className="email-body">
-            <p className="email-body-text">{EMAIL_BODY}</p>
+            <p className="email-body-text">
+              {EMAIL_SHOWN}<span className="typing-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+            </p>
           </div>
         </div>
       </motion.div>
