@@ -15,7 +15,7 @@ const item = {
 
 const EMAIL_SHOWN = `Dear Professor Rossi,
 
-I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, especially the correlation with`
+I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were particularly compelling, especially the correlation with`
 
 export default function Hero() {
   return (
