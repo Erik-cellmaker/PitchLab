@@ -17,7 +17,10 @@ const EMAIL_SHOWN = `Dear Professor Rossi,
 
 I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were genuinely compelling, particularly the correlation with long-term ejection fraction outcomes.
 
-I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences (3.8 GPA). I'm drawn to cardiac repair research and would love to`
+I'm Maya Patel, a junior at Northlake University majoring in Biomedical Sciences (3.8 GPA). I'm drawn to cardiac repair research and would love to discuss the possibility of joining your lab as a research assistant this summer. I'd be happy to share my CV or any relevant coursework at your convenience.
+
+Best,
+Maya Patel`
 
 export default function Hero() {
   return (
@@ -77,7 +80,7 @@ export default function Hero() {
 
           <div className="email-body">
             <p className="email-body-text">
-              {EMAIL_SHOWN}<span className="typing-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+              {EMAIL_SHOWN}
             </p>
           </div>
         </div>
