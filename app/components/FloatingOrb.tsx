@@ -7,8 +7,8 @@ export default function FloatingOrb() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
+    if (!ref.current) return
+    const el: HTMLDivElement = ref.current
 
     let raf = 0
     let scrollY = 0
