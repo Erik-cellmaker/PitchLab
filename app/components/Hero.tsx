@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import GlobeCanvas from './GlobeCanvas'
 
 const ease: [number, number, number, number] = [0.23, 1, 0.32, 1]
 
@@ -27,6 +28,7 @@ maya.patel@northlake.edu`
 export default function Hero() {
   return (
     <section className="hero" id="main" aria-labelledby="hero-h1">
+      <GlobeCanvas />
       <motion.div
         className="hero-inner"
         variants={stagger}
