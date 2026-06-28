@@ -10,8 +10,8 @@ export default function Footer() {
         <span>PitchLab © 2026</span>
       </div>
       <nav className="footer-links" aria-label="Footer links">
-        <a href="https://pitch-lab.dev/terms">Terms</a>
-        <a href="https://pitch-lab.dev/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
         <a href="mailto:hello@pitchlab.dev">hello@pitchlab.dev</a>
       </nav>
     </footer>
