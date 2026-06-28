@@ -38,7 +38,7 @@ function PubmedMockup() {
         <div className="pub-email">
           <div className="pub-email-label">Draft · dr.elenarossi@westbridge.edu</div>
           <p className="pub-email-text">
-            Dear Professor Rossi, I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were particularly compelling, especially the correlation with<span className="pub-cursor" aria-hidden="true"/>
+            Dear Professor Rossi, I came across your 2024 paper on post-infarct ventricular remodeling. Your findings on collagen cross-linking during scar maturation were particularly compelling, especially the correlation with<span className="typing-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
           </p>
         </div>
       </div>
