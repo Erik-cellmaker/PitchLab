@@ -1,3 +1,5 @@
+'use client'
+import { motion } from 'framer-motion'
 import FadeUp from './FadeUp'
 
 function Check() {
@@ -75,26 +77,56 @@ export default function Pricing() {
 
         <FadeUp delay={0.1}>
           <div className="pricing-grid">
-            {plans.map(plan => (
-              <article
-                key={plan.name}
-                className={`p-card${plan.featured ? ' featured' : ''}`}
-                aria-labelledby={`plan-name-${plan.name}`}
-              >
-                {plan.featured && <div className="p-badge">Most popular</div>}
-                <div className="p-name" id={`plan-name-${plan.name}`}>{plan.name}</div>
-                <div className="p-price"><sup>$</sup>{plan.price}</div>
-                <div className="p-volume">{plan.volume}</div>
-                <p style={{ fontSize: 13, color: 'var(--text-3)', marginBottom: 0, textAlign: 'center' }}>{plan.desc}</p>
-                <div className="p-divider"/>
-                <ul className="p-features" aria-label={`${plan.name} features`}>
-                  {plan.features.map(f => (
-                    <li key={f}><Check/>{f}</li>
-                  ))}
-                </ul>
-                <a href={plan.href} className={plan.btnClass}>{plan.cta}</a>
-              </article>
-            ))}
+            {plans.map(plan => {
+              const id = `plan-name-${plan.name}`
+              const body = (
+                <>
+                  {plan.featured && <div className="p-badge">Most popular</div>}
+                  <div className="p-name" id={id}>{plan.name}</div>
+                  <div className="p-price"><sup>$</sup>{plan.price}</div>
+                  <div className="p-volume">{plan.volume}</div>
+                  <p style={{ fontSize: 13, color: 'var(--text-3)', marginBottom: 0, textAlign: 'center' }}>{plan.desc}</p>
+                  <div className="p-divider"/>
+                  <ul className="p-features" aria-label={`${plan.name} features`}>
+                    {plan.features.map(f => (
+                      <li key={f}><Check/>{f}</li>
+                    ))}
+                  </ul>
+                  <a href={plan.href} className={plan.btnClass}>{plan.cta}</a>
+                </>
+              )
+
+              if (plan.featured) {
+                return (
+                  <motion.article
+                    key={plan.name}
+                    className="p-card featured"
+                    aria-labelledby={id}
+                    animate={{
+                      boxShadow: [
+                        '0 0 0 1px rgba(94,106,210,0.15), 0 0 50px rgba(94,106,210,0.08)',
+                        '0 0 0 1px rgba(94,106,210,0.40), 0 0 80px rgba(94,106,210,0.22)',
+                        '0 0 0 1px rgba(94,106,210,0.15), 0 0 50px rgba(94,106,210,0.08)',
+                      ],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    whileHover={{
+                      y: -4,
+                      boxShadow: '0 0 0 1px rgba(94,106,210,0.25), 0 0 80px rgba(94,106,210,0.15), 0 16px 40px rgba(0,0,0,0.4)',
+                      transition: { duration: 0.2 },
+                    }}
+                  >
+                    {body}
+                  </motion.article>
+                )
+              }
+
+              return (
+                <article key={plan.name} className="p-card" aria-labelledby={id}>
+                  {body}
+                </article>
+              )
+            })}
           </div>
           <p className="pricing-note">All tiers · AI-written emails based on each professor's actual published research · No templates</p>
         </FadeUp>
