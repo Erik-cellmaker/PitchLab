@@ -7,9 +7,6 @@ export default function FloatingOrb() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!ref.current) return
-    const el: HTMLDivElement = ref.current
-
     let raf = 0
     let scrollY = 0
 
@@ -19,16 +16,17 @@ export default function FloatingOrb() {
     window.addEventListener('scroll', onScroll, { passive: true })
 
     function frame(now: number) {
+      const el = ref.current
+      if (!el) return
+
       const t = now / 1000
       const vw = window.innerWidth
       const vh = window.innerHeight
 
-      // Lissajous-style drift: two overlapping sine waves on each axis
       const x = vw * 0.58
         + Math.sin(t * 0.22) * vw * 0.16
         + Math.cos(t * 0.13) * vw * 0.07
 
-      // Follows scroll at 10% speed so it drifts lazily down the page
       const y = vh * 0.40
         + scrollY * 0.10
         + Math.sin(t * 0.18) * 55
