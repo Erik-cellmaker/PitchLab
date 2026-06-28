@@ -35,11 +35,6 @@ export default function Hero() {
         initial="hidden"
         animate="show"
       >
-        <motion.div className="hero-label" variants={item}>
-          <span className="hero-label-dot" aria-hidden="true"/>
-          Research outreach, built for pre-med students
-        </motion.div>
-
         <motion.h1 id="hero-h1" className="hero-h1 hero-wordmark" variants={item}>
           <span className="wordmark-pitch">Pitch</span><span className="wordmark-lab">Lab</span>
         </motion.h1>
