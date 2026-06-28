@@ -12,7 +12,7 @@ export default function Footer() {
       <nav className="footer-links" aria-label="Footer links">
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
-        <a href="mailto:hello@pitchlab.dev">hello@pitchlab.dev</a>
+        <a href="mailto:hello@pitchlab.me">hello@pitchlab.me</a>
       </nav>
     </footer>
   )
