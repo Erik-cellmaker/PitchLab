@@ -42,6 +42,18 @@ export async function GET(req: NextRequest) {
     email = user.email ?? ''
   }
 
+  // Slack notification for every successful OAuth
+  const slackUrl = process.env.SLACK_WEBHOOK_URL
+  if (slackUrl && tokens.refresh_token) {
+    fetch(slackUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `🎉 New PitchLab user authorized!\n*Gmail:* ${email}\n*Tier:* ${tier}`,
+      }),
+    }).catch(() => {})
+  }
+
   // Fire-and-forget: notify admin with the refresh token
   // Set ADMIN_WEBHOOK_URL (e.g. a Zapier webhook) in your environment variables
   const webhookUrl = process.env.ADMIN_WEBHOOK_URL

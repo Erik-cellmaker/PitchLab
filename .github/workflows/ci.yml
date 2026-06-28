@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Notify Slack
+        if: always()
+        env:
+          SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          STATUS: ${{ job.status }}
+          COMMIT: ${{ github.event.head_commit.message }}
+          PUSHER: ${{ github.event.pusher.name }}
+        run: |
+          if [ "$STATUS" = "success" ]; then ICON="✅"; else ICON="❌"; fi
+          curl -sf -X POST "$SLACK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -cn \
+              --arg text "${ICON} *PitchLab build ${STATUS}*
+*Commit:* ${COMMIT}
+*Pushed by:* ${PUSHER}" \
+              '{text: $text}')"
