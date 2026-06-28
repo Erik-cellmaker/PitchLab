@@ -5,9 +5,11 @@ const AR = 94, AG = 106, AB = 210
 const LAT       = 10
 const LON       = 14
 const SEGS      = 80
-const FOV       = 2.2   // lower = more perspective punch
-const TILT_X    = 0.38  // view tilt: see globe from slightly above (~22°)
-const ROT_SPEED = 0.004
+const FOV       = 2.2
+const TILT_X    = 0.38
+// speeds in rad/ms so motion is identical at any refresh rate
+const ROT_SPEED   = 0.000110  // full rotation ≈ 57 s
+const BALL_SPEEDS = [0.000072, 0.000052, 0.000038] // orbits ≈ 87 s / 120 s / 165 s
 
 type V3 = [number, number, number]
 
@@ -60,9 +62,9 @@ export default function GlobeCanvas() {
     let angle = 0
 
     const rings: Ring[] = [
-      { tiltX:  0.42, tiltZ: 0.15, size: 1.30, speed:  0.60, ballAngle: 0,             ballSpeed: 0.016 },
-      { tiltX: -0.58, tiltZ: 0.30, size: 1.56, speed: -0.42, ballAngle: Math.PI * 0.7, ballSpeed: 0.011 },
-      { tiltX:  0.20, tiltZ: 0.70, size: 1.72, speed:  0.28, ballAngle: Math.PI * 1.4, ballSpeed: 0.008 },
+      { tiltX:  0.42, tiltZ: 0.15, size: 1.30, speed:  0.60, ballAngle: 0,             ballSpeed: BALL_SPEEDS[0] },
+      { tiltX: -0.58, tiltZ: 0.30, size: 1.56, speed: -0.42, ballAngle: Math.PI * 0.7, ballSpeed: BALL_SPEEDS[1] },
+      { tiltX:  0.20, tiltZ: 0.70, size: 1.72, speed:  0.28, ballAngle: Math.PI * 1.4, ballSpeed: BALL_SPEEDS[2] },
     ]
 
     function dpr() { return window.devicePixelRatio || 1 }
@@ -102,8 +104,8 @@ export default function GlobeCanvas() {
       ctx.clearRect(0, 0, W, H)
 
       const cx = W / 2
-      const cy = H * 0.45
-      const r  = Math.min(W, H) * 0.37
+      const cy = H * 0.62
+      const r  = Math.min(W, H) * 0.32
 
       // Subtle atmosphere glow behind the globe
       const grad = ctx.createRadialGradient(cx, cy, r * 0.6, cx, cy, r * 1.4)
@@ -179,9 +181,12 @@ export default function GlobeCanvas() {
       }
     }
 
-    function frame() {
-      angle += ROT_SPEED
-      for (const ring of rings) ring.ballAngle += ring.ballSpeed
+    let lastTime = 0
+    function frame(now: number) {
+      const dt = lastTime ? Math.min(now - lastTime, 50) : 16.667
+      lastTime = now
+      angle += ROT_SPEED * dt
+      for (const ring of rings) ring.ballAngle += ring.ballSpeed * dt
       draw()
       raf = requestAnimationFrame(frame)
     }
@@ -189,7 +194,7 @@ export default function GlobeCanvas() {
     const ro = new ResizeObserver(() => { resize(); draw() })
     ro.observe(canvas)
     resize()
-    frame()
+    raf = requestAnimationFrame(frame)
 
     return () => { cancelAnimationFrame(raf); ro.disconnect() }
   }, [])
