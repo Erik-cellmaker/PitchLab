@@ -31,6 +31,55 @@
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* ── ANIMATED GRADIENT BACKGROUND ── */
+.gradient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+.gradient-blob-1 {
+  width: 700px; height: 700px;
+  background: var(--accent);
+  opacity: 0.08;
+  top: -180px; left: -180px;
+  animation: blob1 28s ease-in-out infinite alternate;
+}
+.gradient-blob-2 {
+  width: 550px; height: 550px;
+  background: var(--green);
+  opacity: 0.06;
+  bottom: -120px; right: -120px;
+  animation: blob2 34s ease-in-out infinite alternate;
+}
+.gradient-blob-3 {
+  width: 480px; height: 480px;
+  background: var(--accent);
+  opacity: 0.05;
+  top: 45%; left: 55%;
+  transform: translate(-50%, -50%);
+  animation: blob3 22s ease-in-out infinite alternate;
+}
+@keyframes blob1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(240px, 320px) scale(1.25); }
+}
+@keyframes blob2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-200px, -260px) scale(1.2); }
+}
+@keyframes blob3 {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to   { transform: translate(calc(-50% + 160px), calc(-50% - 180px)) scale(0.85); }
+}
+
 /* ── Reset ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
